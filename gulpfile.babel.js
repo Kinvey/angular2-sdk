@@ -59,12 +59,8 @@ gulp.task('bundle', ['build'], () => {
       context: `${__dirname}/dist`,
       entry: ['./index.js'],
       externals: {
-        '@angular/core': {
-          var: 'angular'
-        },
-        '@angular/http': {
-          var: 'angular'
-        }
+        '@angular/core': 'commonjs @angular/core',
+        '@angular/http': 'commonjs @angular/http'
       },
       module: {
         loaders: [
@@ -72,9 +68,11 @@ gulp.task('bundle', ['build'], () => {
         ]
       },
       output: {
-        filename: 'kinvey-angular2-sdk.js'
+        filename: 'kinvey-angular2-sdk.js',
+        libraryTarget: 'commonjs2',
+        library: 'Kinvey'
       },
-      targert: 'web'
+      target: 'web'
     }, webpack))
     .pipe(banner(header, { pkg: pkg }))
     .pipe(gulp.dest(`${__dirname}/dist`))

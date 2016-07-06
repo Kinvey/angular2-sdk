@@ -8,6 +8,7 @@
  *
  * Released under the MIT license.
  */
+module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -82,9 +83,9 @@
 
 	var _http2 = __webpack_require__(320);
 
-	var _device = __webpack_require__(326);
+	var _device = __webpack_require__(323);
 
-	var _popup = __webpack_require__(330);
+	var _popup = __webpack_require__(327);
 
 	// Swap Cache Middelware
 	var cacheRack = _rack.KinveyRackManager.cacheRack;
@@ -37418,11 +37419,11 @@
 
 	var _middleware = __webpack_require__(167);
 
-	var _http = __webpack_require__(321);
+	var _core = __webpack_require__(321);
 
-	var _parseHeaders = __webpack_require__(322);
+	var _http = __webpack_require__(322);
 
-	var _parseHeaders2 = _interopRequireDefault(_parseHeaders);
+	var _es6Promise = __webpack_require__(169);
 
 	var _regeneratorRuntime = __webpack_require__(159);
 
@@ -37430,7 +37431,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new _es6Promise.Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return _es6Promise.Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -37440,32 +37443,38 @@
 
 	// eslint-disable-line no-unused-vars
 
+	var FakeXSRFStrategy = function (_XSRFStrategy) {
+	  _inherits(FakeXSRFStrategy, _XSRFStrategy);
+
+	  function FakeXSRFStrategy() {
+	    _classCallCheck(this, FakeXSRFStrategy);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(FakeXSRFStrategy).apply(this, arguments));
+	  }
+
+	  _createClass(FakeXSRFStrategy, [{
+	    key: 'configureRequest',
+	    value: function configureRequest() {/* */}
+	  }]);
+
+	  return FakeXSRFStrategy;
+	}(_http.XSRFStrategy);
+
+	var XRSF_STRATEGY = (0, _core.provide)(_http.XSRFStrategy, { useValue: new FakeXSRFStrategy() });
+
 	var HttpMiddleware = exports.HttpMiddleware = function (_KinveyMiddleware) {
 	  _inherits(HttpMiddleware, _KinveyMiddleware);
 
-	  _createClass(HttpMiddleware, null, [{
-	    key: 'parameters',
-
-	    // Angular2 DI
-	    get: function get() {
-	      return [[_http.Http]];
-	    }
-	  }]);
-
-	  function HttpMiddleware(http) {
+	  function HttpMiddleware() {
 	    _classCallCheck(this, HttpMiddleware);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HttpMiddleware).call(this, 'Angular2 Http Middleware'));
-
-	    _this.http = http;
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(HttpMiddleware).call(this, 'Angular2 Http Middleware'));
 	  }
 
 	  _createClass(HttpMiddleware, [{
 	    key: 'handle',
 	    value: function () {
 	      var _ref = _asyncToGenerator(_regeneratorRuntime2.default.mark(function _callee(request) {
-	        var url, method, rawHeaders, body, headers, options, response;
 	        return _regeneratorRuntime2.default.wrap(function _callee$(_context) {
 	          while (1) {
 	            switch (_context.prev = _context.next) {
@@ -37474,39 +37483,67 @@
 	                return _get(Object.getPrototypeOf(HttpMiddleware.prototype), 'handle', this).call(this, request);
 
 	              case 2:
+	                return _context.abrupt('return', new _es6Promise.Promise(function (resolve, reject) {
+	                  // Create the request options
+	                  var url = request.url;
+	                  var method = request.method;
+	                  var headers = request.headers;
+	                  var body = request.body;
 
-	                // Create the request options
-	                url = request.url;
-	                method = request.method;
-	                rawHeaders = request.rawHeaders;
-	                body = request.body;
-	                headers = new _http.Headers(rawHeaders.toJSON());
-	                options = new _http.RequestOptions({
-	                  method: method,
-	                  headers: headers,
-	                  body: body
-	                });
+	                  var ng2Headers = new _http.Headers(headers.toJSON());
+	                  var options = new _http.RequestOptions({
+	                    method: method,
+	                    headers: ng2Headers,
+	                    body: body
+	                  });
 
-	                // Send the request
+	                  // Send the request
+	                  var http = _core.ReflectiveInjector.resolveAndCreate([].concat(_toConsumableArray(_http.HTTP_PROVIDERS), [XRSF_STRATEGY])).get(_http.Http);
+	                  var observable = http.request(url, options);
+	                  observable.subscribe(function (response) {
+	                    var headers = {};
+	                    var headerKeys = response.headers.keys();
 
-	                _context.next = 10;
-	                return this.http.request(url, options).toPromise();
+	                    var _iteratorNormalCompletion = true;
+	                    var _didIteratorError = false;
+	                    var _iteratorError = undefined;
 
-	              case 10:
-	                response = _context.sent;
+	                    try {
+	                      for (var _iterator = headerKeys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                        var key = _step.value;
 
+	                        headers[key] = response.headers.get(key);
+	                      }
 
-	                // Set the response on the request
-	                request.response = {
-	                  statusCode: response.status,
-	                  headers: (0, _parseHeaders2.default)(response.headers.toJSON()),
-	                  data: response.json()
-	                };
+	                      // Set the response on the request
+	                    } catch (err) {
+	                      _didIteratorError = true;
+	                      _iteratorError = err;
+	                    } finally {
+	                      try {
+	                        if (!_iteratorNormalCompletion && _iterator.return) {
+	                          _iterator.return();
+	                        }
+	                      } finally {
+	                        if (_didIteratorError) {
+	                          throw _iteratorError;
+	                        }
+	                      }
+	                    }
 
-	                // Return the request
-	                return _context.abrupt('return', request);
+	                    request.response = {
+	                      statusCode: response.status,
+	                      headers: headers,
+	                      data: response.text()
+	                    };
+	                  }, function (error) {
+	                    reject(error);
+	                  }, function () {
+	                    resolve(request);
+	                  });
+	                }));
 
-	              case 13:
+	              case 3:
 	              case 'end':
 	                return _context.stop();
 	            }
@@ -37529,139 +37566,16 @@
 /* 321 */
 /***/ function(module, exports) {
 
-	module.exports = angular;
+	module.exports = require("@angular/core");
 
 /***/ },
 /* 322 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var trim = __webpack_require__(323)
-	  , forEach = __webpack_require__(324)
-	  , isArray = function(arg) {
-	      return Object.prototype.toString.call(arg) === '[object Array]';
-	    }
-
-	module.exports = function (headers) {
-	  if (!headers)
-	    return {}
-
-	  var result = {}
-
-	  forEach(
-	      trim(headers).split('\n')
-	    , function (row) {
-	        var index = row.indexOf(':')
-	          , key = trim(row.slice(0, index)).toLowerCase()
-	          , value = trim(row.slice(index + 1))
-
-	        if (typeof(result[key]) === 'undefined') {
-	          result[key] = value
-	        } else if (isArray(result[key])) {
-	          result[key].push(value)
-	        } else {
-	          result[key] = [ result[key], value ]
-	        }
-	      }
-	  )
-
-	  return result
-	}
+	module.exports = require("@angular/http");
 
 /***/ },
 /* 323 */
-/***/ function(module, exports) {
-
-	
-	exports = module.exports = trim;
-
-	function trim(str){
-	  return str.replace(/^\s*|\s*$/g, '');
-	}
-
-	exports.left = function(str){
-	  return str.replace(/^\s*/, '');
-	};
-
-	exports.right = function(str){
-	  return str.replace(/\s*$/, '');
-	};
-
-
-/***/ },
-/* 324 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isFunction = __webpack_require__(325)
-
-	module.exports = forEach
-
-	var toString = Object.prototype.toString
-	var hasOwnProperty = Object.prototype.hasOwnProperty
-
-	function forEach(list, iterator, context) {
-	    if (!isFunction(iterator)) {
-	        throw new TypeError('iterator must be a function')
-	    }
-
-	    if (arguments.length < 3) {
-	        context = this
-	    }
-	    
-	    if (toString.call(list) === '[object Array]')
-	        forEachArray(list, iterator, context)
-	    else if (typeof list === 'string')
-	        forEachString(list, iterator, context)
-	    else
-	        forEachObject(list, iterator, context)
-	}
-
-	function forEachArray(array, iterator, context) {
-	    for (var i = 0, len = array.length; i < len; i++) {
-	        if (hasOwnProperty.call(array, i)) {
-	            iterator.call(context, array[i], i, array)
-	        }
-	    }
-	}
-
-	function forEachString(string, iterator, context) {
-	    for (var i = 0, len = string.length; i < len; i++) {
-	        // no such thing as a sparse string.
-	        iterator.call(context, string.charAt(i), i, string)
-	    }
-	}
-
-	function forEachObject(object, iterator, context) {
-	    for (var k in object) {
-	        if (hasOwnProperty.call(object, k)) {
-	            iterator.call(context, object[k], k, object)
-	        }
-	    }
-	}
-
-
-/***/ },
-/* 325 */
-/***/ function(module, exports) {
-
-	module.exports = isFunction
-
-	var toString = Object.prototype.toString
-
-	function isFunction (fn) {
-	  var string = toString.call(fn)
-	  return string === '[object Function]' ||
-	    (typeof fn === 'function' && string !== '[object RegExp]') ||
-	    (typeof window !== 'undefined' &&
-	     // IE8 and below
-	     (fn === window.setTimeout ||
-	      fn === window.alert ||
-	      fn === window.confirm ||
-	      fn === window.prompt))
-	};
-
-
-/***/ },
-/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37675,9 +37589,9 @@
 
 	var _device = __webpack_require__(275);
 
-	var _device2 = __webpack_require__(327);
+	var _device2 = __webpack_require__(324);
 
-	var _package = __webpack_require__(329);
+	var _package = __webpack_require__(326);
 
 	var _package2 = _interopRequireDefault(_package);
 
@@ -37729,7 +37643,7 @@
 	}(_device.Device);
 
 /***/ },
-/* 327 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -37741,7 +37655,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _package = __webpack_require__(328);
+	var _package = __webpack_require__(325);
 
 	var _package2 = _interopRequireDefault(_package);
 
@@ -37789,7 +37703,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 328 */
+/* 325 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -37948,7 +37862,7 @@
 	};
 
 /***/ },
-/* 329 */
+/* 326 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -37980,31 +37894,22 @@
 			"@angular/core": "^2.0.0-rc.4",
 			"@angular/http": "^2.0.0-rc.4",
 			"@angular/platform-browser": "^2.0.0-rc.4",
+			"es6-promise": "^3.2.1",
 			"kinvey-html5-sdk": "*",
 			"kinvey-javascript-sdk-core": "*",
 			"kinvey-phonegap-sdk": "*",
-			"parse-headers": "^2.0.1",
 			"reflect-metadata": "^0.1.3",
 			"regenerator-runtime": "^0.9.5",
-			"rxjs": "^5.0.0-beta.0",
-			"zone.js": "^0.6.6"
-		},
-		"peerDependencies": {
-			"@angular/common": "^2.0.0-rc.4",
-			"@angular/compiler": "^2.0.0-rc.4",
-			"@angular/core": "^2.0.0-rc.4",
-			"@angular/http": "^2.0.0-rc.4",
-			"@angular/platform-browser": "^2.0.0-rc.4",
-			"kinvey-html5-sdk": "*",
-			"kinvey-javascript-sdk-core": "*",
-			"kinvey-phonegap-sdk": "*",
-			"reflect-metadata": "^0.1.3",
-			"rxjs": "^5.0.0-beta.0",
+			"rxjs": "^5.0.0-beta.9",
 			"zone.js": "^0.6.6"
 		},
 		"devDependencies": {
 			"babel-core": "^6.9.0",
 			"babel-eslint": "^6.0.0",
+			"babel-plugin-angular2-annotations": "^5.1.0",
+			"babel-plugin-transform-class-properties": "^6.10.2",
+			"babel-plugin-transform-decorators-legacy": "^1.3.4",
+			"babel-plugin-transform-flow-strip-types": "^6.8.0",
 			"babel-polyfill": "^6.9.0",
 			"babel-preset-es2015": "^6.9.0",
 			"babel-preset-stage-2": "^6.0.15",
@@ -38054,7 +37959,7 @@
 	};
 
 /***/ },
-/* 330 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -38064,11 +37969,11 @@
 	});
 	exports.Popup = undefined;
 
-	var _popup = __webpack_require__(331);
+	var _popup = __webpack_require__(328);
 
-	var _popup2 = __webpack_require__(332);
+	var _popup2 = __webpack_require__(329);
 
-	var _device = __webpack_require__(326);
+	var _device = __webpack_require__(323);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -38088,7 +37993,7 @@
 	};
 
 /***/ },
-/* 331 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -38265,7 +38170,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 332 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
