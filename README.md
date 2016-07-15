@@ -1,7 +1,12 @@
 # Kinvey Angular2 SDK
 [Kinvey](http://www.kinvey.com) (pronounced Kin-vey, like convey) makes it ridiculously easy for developers to setup, use and operate a cloud backend for their mobile apps. They don't have to worry about connecting to various cloud services, setting up servers for their backend, or maintaining and scaling them.
 
-This node and bower module makes it very easy to connect your Angular2 app with Kinvey.
+This node and bower module makes it very easy to connect your Angular2 app with Kinvey
+
+## Troubleshooting
+1. I have imported the SDK into my app but I get a message that `kinvey-angular2-sdk cannot be found`. What should I do?
+Turns out, mixing JavaScript and TypeScript can be problematic when TypeScript doesn't understand the extra code. In order to get the `kinvey-angular2-sdk` to be recognized by your Angular2 app you will need to create a typings definition file. Please refer to [Typings for NPM Packages](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html) on how to create a typings definition file for the kinvey-angular2-sdk. Feel free to submit a pull request to help us integrate it into the repository.
+
 
 ## How to use
 
@@ -15,24 +20,13 @@ You can install the module using npm:
 npm install kinvey-angular2-sdk --save
 ```
 
-or
-
-```bash
-bower install kinvey-angular2-sdk --save
-```
-
 #### 3. Configure the SDK
-If you installed the SDK with npm, import the library in your code using `require`.
+Import the SDK in your code.
 
 ```javascript
-var Kinvey = require('kinvey-angular2-sdk');
+import { Kinvey} from 'kinvey-angular2-sdk';
 ```
 
-If you installed the SDK with bower, add a script tag to your main html file.
-
-```html
-<script src="bower_components/kinvey-angular-sdk/dist/kinvey-angular2-sdk.min.js"></script>
-```
 
 Next, use `Kinvey.init` to configure your app. Replace `<appKey>` and `<appSecret>` with your apps app key and secret. You can find these for your app using the [Kinvey Console App](https://console.kinvey.com).
 
