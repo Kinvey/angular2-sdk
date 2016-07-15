@@ -34,28 +34,22 @@ import { Kinvey} from 'kinvey-angular2-sdk';
 Next, use `Kinvey.init` to configure your app. Replace `<appKey>` and `<appSecret>` with your apps app key and secret. You can find these for your app using the [Kinvey Console App](https://console.kinvey.com).
 
 ```javascript
-var app = angular.module('myApp', ['kinvey']);
-app.config(['$kinveyProvider', function($kinveyProvider) {
-  $kinveyProvider.init({
-    appKey: '<appKey>',
-    appSecret: '<appSecret>'
-  });
-}]);
+Kinvey.init({
+  appKey: '<appKey>',
+  appSecret: '<appSecret>'
+});
 ```
 
 #### 4. Verify Set Up
 You can use the following snippet to verify the app credentials were entered correctly. This function will contact the backend and verify that the SDK can communicate with your app.
 
 ```javascript
-var app = angular.module('myApp', ['kinvey']);
-app.run(['$kinvey', function($kinvey) {
-  var promise = $kinvey.ping();
-  promise.then(function(response) {
-      console.log('Kinvey Ping Success. Kinvey Service is alive, version: ' + response.version + ', response: ' + response.kinvey);
-  }).catch(function(error) {
-      console.log('Kinvey Ping Failed. Response: ' + error.message);
-  });
-}]);
+var promise = Kinvey.ping();
+promise.then(function(response) {
+  console.log('Kinvey Ping Success. Kinvey Service is alive, version: ' + response.version + ', response: ' + response.kinvey);
+}).catch(function(error) {
+  console.log('Kinvey Ping Failed. Response: ' + error.message);
+});
 ```
 
 ## What’s next?
