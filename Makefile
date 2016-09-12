@@ -1,4 +1,4 @@
-PROJECT = "Kinvey Angular SDK"
+PROJECT = "Kinvey Angular2 SDK"
 
 clean: ;@echo "Cleaning ${PROJECT}..."; \
 	rm -rf node_modules && rm -rf es5 && rm -rf dist && rm -rf coverage && rm -f test.tap
@@ -19,6 +19,6 @@ publish: ;@echo "Publishing ${PROJECT}..."; \
 	npm publish .
 
 audit: clean install test
-release: audit build upload publish
+release: audit build publish
 
 .PHONY: clean install build test upload publish audit release

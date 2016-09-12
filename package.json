@@ -1,6 +1,6 @@
 {
   "name": "kinvey-angular2-sdk",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Kinvey JavaScript SDK for Angular2 applications.",
   "homepage": "http://www.kinvey.com",
   "bugs": {
@@ -11,15 +11,21 @@
   "contributors": [
     "Thomas Conner <thomas@kinvey.com>"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/export.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:Kinvey/angular2-sdk"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register -r babel-polyfill -s 100 --recursive test",
-    "test:watch": "./node_modules/.bin/mocha -w --compilers js:babel-core/register -r babel-polyfill -s 100 --recursive test",
-    "test:jenkins": "./node_modules/.bin/istanbul cover _mocha -- --reporter tap --compilers js:babel-core/register -r babel-polyfill -s 100 --recursive test > test.tap && istanbul report clover"
+    "build": "gulp build",
+    "bundle": "gulp bundle",
+    "clean": "gulp clean",
+    "lint": "gulp lint",
+    "test": "npm run test:unit",
+    "test:unit": "mocha --compilers js:babel-core/register -r babel-polyfill -s 100 --recursive test/unit/setup test/unit",
+    "test:unit:watch": "mocha -w --compilers js:babel-core/register -r babel-polyfill -s 100 --recursive test/unit/setup test/unit",
+    "test:jenkins": "npm run test:unit:jenkins",
+    "test:unit:jenkins": "istanbul cover _mocha -- --reporter tap --compilers js:babel-core/register -r babel-polyfill -s 100 --recursive test/unit/setup test/unit > test.tap && istanbul report clover"
   },
   "dependencies": {
     "@angular/common": "^2.0.0-rc.4",
@@ -29,7 +35,8 @@
     "@angular/platform-browser": "^2.0.0-rc.4",
     "es6-promise": "^3.2.1",
     "kinvey-html5-sdk": "^3.0.0",
-    "kinvey-javascript-sdk-core": "3.0.0-beta.30",
+    "kinvey-javascript-rack": "^1.0.0",
+    "kinvey-javascript-sdk-core": "^3.0.0",
     "kinvey-phonegap-sdk": "^3.0.0",
     "reflect-metadata": "^0.1.3",
     "regenerator-runtime": "^0.9.5",
@@ -44,7 +51,8 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
     "babel-polyfill": "^6.9.0",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-angular2": "0.0.2",
+    "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-2": "^6.0.15",
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
