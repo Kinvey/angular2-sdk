@@ -55,6 +55,10 @@ gulp.task('bundle', ['build'], () => {
     .pipe(gulpWebpack({
       context: `${__dirname}/dist`,
       entry: ['./index.js'],
+      externals: {
+        '@angular/core': 'commonjs @angular/core',
+        '@angular/http': 'commonjs @angular/http'
+      },
       module: {
         loaders: [
           { test: /\.json$/, loader: 'json' }
