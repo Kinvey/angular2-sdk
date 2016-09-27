@@ -12,6 +12,7 @@
     "Thomas Conner <thomas@kinvey.com>"
   ],
   "main": "./dist/export.js",
+  "typings": "./kinvey.d.ts",
   "repository": {
     "type": "git",
     "url": "git@github.com:Kinvey/angular2-sdk"
