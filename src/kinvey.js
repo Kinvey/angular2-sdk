@@ -1,3 +1,4 @@
-import { Kinvey as PhoneGapKinvey } from 'kinvey-phonegap-sdk/dist/kinvey';
+import { Kinvey } from 'kinvey-javascript-sdk-core';
 
-export class Kinvey extends PhoneGapKinvey {}
+// Export
+export default Kinvey;

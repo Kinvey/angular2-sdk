@@ -13,8 +13,11 @@ If you would prefer to just get started without creating a typings definition fi
 
 ## How to use
 
-#### 1. Sign up for Kinvey
+#### 0. Sign up for Kinvey
 To use the SDK, sign up for Kinvey if you have not already done so. Go to the [sign up](https://console.kinvey.com/#signup) page, and follow the steps provided.
+
+#### 1. Create A TypeScript Definitions File
+To use the SDK, you will need to create a TypeScript Definitions File. Please take a look at https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html for help creating a Typescript definitions file. We love contributions from the community. If you would like to submit a PR with a Typescript definitions file we will review it and accept it if it is satisfactory.
 
 #### 2. Install the SDK
 You can install the module using npm:
