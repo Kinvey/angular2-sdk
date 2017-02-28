@@ -1,10 +1,15 @@
  {
-  "extends": "airbnb",
+  "extends": "airbnb-base",
   "parser": "babel-eslint",
   "rules": {
+    "arrow-parens": "warn",
+    "class-methods-use-this": "off",
     "comma-dangle": "off",
     "func-names": "off",
     "id-length": "off",
+    "import/imports-first": "off",
+    "import/newline-after-import": "off",
+    "import/prefer-default-export": "off",
     "max-len": [
       "warn",
       {
@@ -14,24 +19,27 @@
         "ignoreTrailingComments": true
       }
     ],
-    "new-cap": [2, { "newIsCap": true, "capIsNew": false }],
     "no-console": "error",
     "no-loop-func": "warn",
     "no-param-reassign": "off",
     "no-shadow": "off",
     "no-underscore-dangle": "off",
+    "prefer-default-export": "off",
     "object-shorthand": [
       "error",
       "methods"
     ],
     "space-before-function-paren": "off"
   },
-  "ecmaFeatures": {
-    "modules": true,
-    "jsx": false
-  },
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "mocha": true,
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
   }
 }

@@ -1,0 +1,47 @@
+// {
+//   "compilerOptions": {
+//     "declaration": true,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "noImplicitAny": true,
+//     "module": "es2015",
+//     "target": "es5",
+//     "moduleResolution": "node",
+//     "noUnusedLocals": true,
+//     "types": [
+//       "node"
+//     ],
+//     "lib": ["es2015", "dom"]
+//   },
+//   "files": [
+//     "index.ts",
+//     "./src/kinvey.ts",
+//   ],
+//   "exclude": [
+//     "node_modules"
+//   ],
+//   "angularCompilerOptions": {
+//     "strictMetadataEmit": true,
+//     "skipTemplateCodegen": true
+//   }
+// }
+
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2015", "dom"],
+    "module": "umd",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
