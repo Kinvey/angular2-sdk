@@ -1,15 +1,19 @@
 {
   "plugins": [
+    "add-module-exports",
     "inline-dotenv",
     ["module-resolver", {
       "alias": {
         "package.json": "./package.json",
         "src": "./src"
       }
-    }]
+    }],
+    "transform-class-properties",
+    "transform-flow-strip-types"
   ],
   "presets": [
     "es2015",
-    "angular2"
-  ]
+    "stage-2"
+  ],
+  "sourceMaps": true
 }
