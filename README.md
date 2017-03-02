@@ -3,13 +3,6 @@
 
 This npm package makes it very easy to connect your Angular2 app with Kinvey
 
-## Troubleshooting
-__1) I have imported the SDK into my app but I get a message that `kinvey-angular2-sdk cannot be found`. What should I do?__
-
-Turns out, mixing JavaScript and TypeScript can be problematic when TypeScript doesn't understand the extra code. In order to get the `kinvey-angular2-sdk` to be recognized by your Angular2 app you will need to create a typings definition file. Please refer to [Typings for NPM Packages](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html) on how to create a typings definition file for the `kinvey-angular2-sdk`. You will then have to refer to [Angular TypeScript Configuration](https://angular.io/docs/ts/latest/guide/typescript-configuration.html) on how to integrate this typings definition file into your project. Feel free to submit a pull request to help us integrate it into the repository.
-
-If you would prefer to just get started without creating a typings definition file you can instead write your Angular2 app with JavaScript and not TypeScript. The [Angular2 Starter](https://github.com/blacksonic/angular2-esnext-starter) is a good starting point for writing your Angular2 application with just JavaScript. You can use the `kinvey-angular2-sdk` with this project without any additional setup.
-
 ## How to use
 
 #### 1. Sign up for Kinvey
