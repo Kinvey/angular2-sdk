@@ -30,7 +30,7 @@ module.exports = {
     new webpack.BannerPlugin(BANNER, { raw: false, entryOnly: true }),
     new webpack.NormalModuleReplacementPlugin(
       /kinvey-js-sdk\/dist\/identity\/src\/popup\.js/,
-      require.resolve(path.resolve(__dirname, 'node_modules/kinvey-phonegap-sdk/dist/popup.js'))
+      require.resolve(path.resolve(__dirname, 'node_modules/kinvey-html5-sdk/dist/popup.js'))
     )
   ],
   profile: true
