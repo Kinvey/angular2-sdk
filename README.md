@@ -19,7 +19,7 @@ npm install kinvey-angular2-sdk --save
 Import the SDK in your code.
 
 ```javascript
-import Kinvey from 'kinvey-angular2-sdk';
+import { Kinvey } from 'kinvey-angular2-sdk';
 ```
 
 Next, use `Kinvey.initialize` to configure your app. Replace `<appKey>` and `<appSecret>` with your apps app key and secret. You can find these for your app using the [Kinvey Console App](https://console.kinvey.com).
