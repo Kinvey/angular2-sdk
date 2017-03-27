@@ -1,6 +1,6 @@
 {
   "name": "kinvey-angular2-sdk",
-  "version": "3.4.1",
+  "version": "3.4.3",
   "description": "Kinvey JavaScript SDK for Angular2 applications.",
   "homepage": "http://www.kinvey.com",
   "bugs": {
@@ -40,7 +40,7 @@
     "transpile": "babel src --out-dir dist"
   },
   "dependencies": {
-    "kinvey-html5-sdk": "3.4.1"
+    "kinvey-html5-sdk": "3.4.4"
   },
   "devDependencies": {
     "babel-cli": "6.23.0",
