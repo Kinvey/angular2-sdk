@@ -3,6 +3,7 @@
 [Full Changelog](https://github.com/Kinvey/angular2-sdk/compare/v3.4.4...v3.4.5)<br/>
 
 **Changes**
+- Update type definitions for Kinvey.Files and Kinvey.User.
 - Update package dependencies.
 
 ## [v3.4.4](https://github.com/Kinvey/angular2-sdk/tree/v3.4.4) (2017-03-27)
