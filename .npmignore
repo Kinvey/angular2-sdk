@@ -10,23 +10,33 @@ npm-debug.log
 .gitattributes
 .gitignore
 .nvmrc
+.codeclimate.yml
+.codecov.yml
+.eslintignore
+.istanbul.yml
+.travis.yml
+.github
+src/*
+!src/kinvey.d.ts
 esdoc.json
 gulpfile.babel.js
 hints.md
 Makefile
 README.md
+CONTRIBUTING.md
+CHANGELOG.md
 
 # Build Files
 .env
 .tmp
 tmp
-s3
+s3/*
 
 # Test Files
-/coverage
+coverage/*
 report.xml
 *.tap
-/test
+test/*
 
 # MacOS Files
 .DS_Store
