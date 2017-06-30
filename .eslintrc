@@ -37,12 +37,12 @@
     "mocha": true,
     "node": true
   },
+  "globals": {
+    "SQLError": true
+  },
   "settings": {
     "import/resolver": {
       "babel-module": {}
     }
-  },
-  "globals": {
-    "PubNub": true
   }
 }
