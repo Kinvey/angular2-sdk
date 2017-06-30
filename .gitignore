@@ -16,9 +16,9 @@ dist
 coverage
 report.xml
 *.tap
-/test/browserstack/app
+test/browserstack/app
 
 # MacOS Files
 .DS_Store
-/shots
-/local.log
+shots/*
+local.log
