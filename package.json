@@ -36,10 +36,10 @@
     "transpile": "babel src --out-dir dist"
   },
   "dependencies": {
-    "kinvey-html5-sdk": "3.8.0"
+    "kinvey-html5-sdk": "3.8.1"
   },
   "peerDependencies": {
-    "kinvey-html5-sdk": "3.8.0"
+    "kinvey-html5-sdk": "3.8.1"
   },
   "devDependencies": {
     "babel-cli": "6.23.0",
