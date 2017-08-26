@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.8.1](https://github.com/Kinvey/angular2-sdk/tree/v3.8.1) (2017-08-25)
+[Full Changelog](https://github.com/Kinvey/angular2-sdk/compare/v3.8.0...v3.8.1)<br/>
+
+### Added
+_None_
+
+### Removed
+_None_
+
+### Changed/Fixed
+- Updated [kinvey-html5-sdk](https://github.com/Kinvey/html5-sdk) dependency to [3.8.1](https://github.com/Kinvey/html5-sdk/tree/v3.8.1)
+
+### Merged Pull Requests
+_None_
+
+### Closed Issues
+_None_
+
 ## [3.8.0](https://github.com/Kinvey/angular2-sdk/tree/v3.8.0) (2017-08-24)
 [Full Changelog](https://github.com/Kinvey/angular2-sdk/compare/v3.5.2...v3.8.0)<br/>
 
