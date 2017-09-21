@@ -1,10 +1,15 @@
 language: node_js
 node_js:
 - '6'
-before_deploy: npm run build
+script:
+- npm run ci
+before_deploy:
+- npm run build
+- cd dist
 deploy:
   provider: npm
   email: thomas.conner@me.com
+  skip_cleanup: true
   api_key:
     secure: Q4nxuD2zbASyfc6u+38nLid5qzNBZA6aPgIhgEYaNF6rDkpYzZnqbUo+wcXrEL5Hawmdm401pCUjuOtUpRVkkswzCuBnEqtvYD7Z60scyr20qpij8y50gdTAiCaHcAueLt+3cJ1I7k1e0yWjy1JWFntrPNpNPbQELh3GoXHVULriWqeRGNFSGHIadUHL4XvTHGWCgpID1XV563Fj3YGpX4UPc1QJxj48cs2nN+57Ys/SC+Du5c1hi8k4TaO7PVgWcwsb6VS9svETXxfY7yXsdSGlsaeBJQfEpZxDB9RxkgmXL9sF2ggNAB+4TSRCaLs1ySYej7ewDCOxpCkzGFj5N09vLXD4Zp4/GIsQ55BvaMsF8XPamS66+XrBMVzx1hFXrEieKmg20ipg2gprM0fHj19wBMQ12Ic3MR2NWLhf2WDGtlADS/E6s34P/FNFvhkkDkwCUkzH6S/FRAgDs42JsFavE/JSorHbshD32rjyRzUqacCmpEWRQ8H3D4Z/xdlOI6bL22+58gUSMWKVOWiOkRQ8/hsOpEdWPq3C+Hbs5+wCmYVNIhGHDCmwGK4+2WgKPVlep3rFj8zjgYvlQmszw0zsMtKpYJ20OGPVHx9a9zlfXyQ54a9HfuPOZsbmTQeYOP9sxrx9ylsT38VDCyt+sK4MJ4EMwERSAvl0Nm4b04M=
   on:
