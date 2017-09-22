@@ -1,24 +1,24 @@
-# NodeJS
-.npm_cache
+# Node
 node_modules
 npm-debug.log
 
-# Src files
-docs
+# Yarn
+yarn-error.log
 
-# Build Files
-.tmp
-tmp
-s3
-dist
+# JetBrains
+.idea/
 
-# Test Files
-coverage
-report.xml
-*.tap
-test/browserstack/app
+# VS Code
+.vscode/
 
-# MacOS Files
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Mac
 .DS_Store
-shots/*
-local.log
+
+# Temporary files
+dist
+src/**/*.js
+src/**/*.js.map

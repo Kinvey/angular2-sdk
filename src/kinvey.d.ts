@@ -5,15 +5,15 @@ import { Observable } from 'rxjs/Observable';
 
 // Kinvey namespace
 export namespace Kinvey {
-  var appVersion: string;
+  let appVersion: string;
   function initialize(config: ClientConfig): Promise<User>;
   function init(config: ClientConfig): Client;
 
   interface PingResponse {
-    version: string,
-    kinvey: string,
-    appName: string,
-    environmentName: string
+    version: string;
+    kinvey: string;
+    appName: string;
+    environmentName: string;
   }
   function ping(): Promise<PingResponse>;
 
@@ -26,13 +26,14 @@ export namespace Kinvey {
 
   // ClientConfig interface
   interface ClientConfig {
-    apiHostname?: string,
-    micHostname?: string,
-    appKey: string,
-    appSecret?: string,
-    masterSecret?: string,
-    encryptionKey?: string,
-    defaultTimeout?: number
+    apiHostname?: string;
+    micHostname?: string;
+    liveServiceHostname?: string;
+    appKey: string;
+    appSecret?: string;
+    masterSecret?: string;
+    encryptionKey?: string;
+    defaultTimeout?: number;
   }
 
   namespace LiveService {
@@ -356,7 +357,7 @@ export namespace Kinvey {
       sort?: string
       limit?: number
       skip?: number
-    }
+    };
     toQueryString(): {};
     toString(): string;
   }
@@ -402,9 +403,26 @@ export namespace Kinvey {
     static getActiveUser(client?: Client): User | null;
     static registerForLiveService(): Promise<void>;
     static unregisterFromLiveService(): Promise<void>;
-
     registerForLiveService(): Promise<void>;
     unregisterFromLiveService(): Promise<void>;
+  }
+
+  // PushOptions interface
+  interface PushOptions {
+    android?: { senderID: string };
+    ios?: { alert?: boolean, badge?: boolean, sound?: boolean };
+  }
+
+  // Push class
+  class Push {
+    private constructor();
+    static pathname: string;
+    static client: Client;
+    static isSupported(): boolean;
+    static onNotification(listener: (notifaction: any) => void);
+    static onceNotification(listener: (notifaction: any) => void);
+    static register(options: PushOptions): Promise<string>;
+    static unregister(): Promise<null>;
   }
 
   // Error classes

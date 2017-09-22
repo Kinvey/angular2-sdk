@@ -1,7 +1,7 @@
-import expect from 'expect';
+import { equal } from 'assert';
 
 describe('Default', function () {
   it('should be true', function() {
-    expect(true).toEqual(true);
+    equal(true, true);
   });
 });
