@@ -1,0 +1,18 @@
+{
+  "version": "3.9.3-beta.5",
+  "name": "kinvey-angular2-sdk",
+  "description": "Kinvey JavaScript SDK for Angular 2+/Ionic 2+ applications.",
+  "author": "Kinvey, Inc.",
+  "homepage": "http://www.kinvey.com",
+  "license": "Apache-2.0",
+  "main": "kinvey-angular2-sdk.min.js",
+  "typings": "kinvey.d.ts",
+  "dependencies": {
+    "rxjs": "5.4.3"
+  },
+  "files": [
+    "kinvey-angular2-sdk.min.js",
+    "kinvey-angular2-sdk.min.js.map",
+    "kinvey.d.ts"
+  ]
+}
